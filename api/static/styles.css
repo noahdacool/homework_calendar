@@ -1,0 +1,108 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #f5f5dc;
+}
+.template_content {
+    padding: 40px;
+}
+
+.grid {
+    display: grid;
+    height: 80vh;
+    grid-column-gap: 40px;
+    grid-auto-columns: 1fr;
+}
+
+.calendar {
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-auto-rows: 40px;
+    grid-gap: 0px;
+    border: 1px solid #000;
+    overflow-y: scroll;
+    background-color: #fff;
+}
+.calendar-item {
+    border: 1px solid #000;
+}
+.week {
+    grid-row: 1;
+    text-align: center;
+    padding-top: 8px;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.month {
+    grid-column: 8;
+}
+.month-text {
+    transform: rotate(90deg);
+    transform-origin: 18px;
+    white-space: pre;
+    width: 0;
+}
+
+.category.dragging {
+    opacity: 0%;
+}
+
+.left-half {
+    grid-column: 1;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+
+.right-half {
+    grid-column: 2;
+}
+
+.left-half, .right-half {
+    background-color: #b8af9c;
+    padding: 24px;
+    border-radius: 30px;
+}
+
+.accordion-button {
+    background-color: white !important;
+}
+
+.information {
+    padding: 20px;
+    background-color: white;
+    border: 1px dashed black;
+}
+
+.assignment-item {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.delete-category {
+    font-size: small;
+    transform: translate(-12px, -24px);
+}
+.delete-category-button {
+    border: 1px solid red;
+    border-radius: 4px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+.date-int {
+    padding-left: 4px;
+}
+
+.color-grid {
+    display: grid;
+}
+.color-block {
+    height: 18px;
+    transform: translateY(-4px);
+    grid-row: 1;
+}

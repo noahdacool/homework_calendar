@@ -1,0 +1,6 @@
+/instance
+/__pycache__
+api/__pycache__
+/Pipfile
+/Pipfile.lock
+/main.py

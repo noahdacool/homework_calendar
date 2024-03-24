@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block page_title %}Calendar{% endblock %}
+
+{% block body %}
+
+<div class="grid">
+    <div class="left-half">
+        <div class="accordion accordion-flush" id="accord">
+            {% for category in categories %}
+            <div class="accordion-item category" id="{{ category.id }}" draggable="true">
+                <h2 class="accordion-header" style="background-color: #8a2be2;">
+                    <button class="accordion-button{% if not category.show %} collapsed{% endif %}" style="border: 4px solid {{ category.color }}" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#c{{ category.id }}" aria-expanded="{% if category.show %}true{% else %}false{% endif %}" aria-controls="c{{ category.id }}" onclick="toggle_visibility({{ category.id }})">
+                        {{ category.name }}
+                    </button>
+                </h2>
+                <div id="c{{ category.id }}" class="accordion-collapse collapse{% if category.show %} show{% endif %}">
+                    {% for assignment in category.assignments %}
+                    <div class="accordion-body assignment-item">
+                        <small style="border-right: 3px solid {{ category.color }}; padding-right: 5px; margin-right: 5px">
+                            {{ assignment.date.strftime('%x') }}
+                        </small>
+                        {{ assignment.name }}
+                        <button type="button" class="close" onclick="delete_assignment({{ assignment.id }})">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="bi-list"></span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                    <div class="accordion-body">
+                        <span>
+                            <form method="POST" class="assignment-input">
+                                <input name='{{ category.id }}' id='{{ category.id }}' class="form-control"
+                                    placeholder="Add New Assignment: Name, Date"></input>
+                            </form>
+                            <button id="b{{ category.id }}" type="button" class="close delete-category" onclick="delete_category({{ category.id }})">
+                                <span aria-hidden="true" class="delete-category-button">delete category</span>
+                                <span class="bi-list"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="form">
+            <form method="POST" style="margin: 20px;">
+                <input name="category" id="category" class="form-control"
+                    placeholder="Add New Category: Name, Color"></input>
+            </form>
+        </div>
+        <div class="information">
+            Valid date formats: mm/dd/yy, m/d/yyyy
+            <br>
+            Valid colors: use hex or visit https://www.w3schools.com/colors/colors_names.asp
+        </div>
+    </div>
+
+    <div class="right-half grid">
+        <div class="calendar" style="grid-row: 1;">
+            {% for day in ['S', 'M', 'T', 'W', 'T', 'F', 'S'] %}
+            <div class="calendar-item week">{{ day }}</div>
+            {% endfor %}
+            <div style="grid-column: 8; border: 1px solid black; visibility: hidden;">2023</div>
+        </div>
+        <div class="calendar" style="grid-row: 2;">
+            {% for i in range(0, weeks) %}
+            {% for a in range(0, 7) %}
+            {% set date = dates[i*7+a] %}
+            <div class="calendar-item day" style="grid-row: {{ i+1 }}; background-color: {{ date[2] }}">
+                <div class="date-int">{{ date[0] }}</div>
+                {% if date[3] != [] %}
+                <div class="color-grid">
+                    {% for color in date[3] %}
+                    <div class="color-block" style="background-color: {{ color }};"></div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+            {% endfor %}
+            {% for date in dates %}
+            {% if date[4]: %}
+            <div class="calendar-item month" style="grid-row: {{date[5]}}/{{date[6]}};">
+                <div>{{ date[8] }}</div>
+                <h4 class="month-text"> {{ date[7] }}</h4>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
