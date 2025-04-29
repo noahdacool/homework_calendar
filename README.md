@@ -5,3 +5,6 @@ While not friendly to small screens, and not altogether very useful, it was a go
 The repo is designed to be pulled directly into production from vercel.com. My current deployment can be found at https://homework-calendar.vercel.app.
 
 This web application utilizes ElephantSQL for data storage, which unfortunately is projected to be shut down January 27, 2025.
+
+---
+Update! (3/29/2025) This web application has been linked to a new database and is now active!
