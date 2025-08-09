@@ -8,3 +8,6 @@ This web application utilizes ElephantSQL for data storage, which unfortunately 
 
 ---
 Update! (3/29/2025) This web application has been linked to a new database and is now active!
+
+---
+Update! (8/9/2025) The new database (hosted by Tembo) was shut down this summer. This app is once again inactive ...for now.
